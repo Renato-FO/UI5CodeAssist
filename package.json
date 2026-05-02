@@ -3,7 +3,8 @@
   "displayName": "SAPUI5 Code Assist",
   "description": "Autocomplete inicial para SAPUI5 em XML views/fragments e JavaScript.",
   "version": "0.0.1",
-  "publisher": "local",
+  "publisher": "renatoordonho",
+  "icon": "assets/icon.png",
   "engines": {
     "vscode": "^1.92.0"
   },
