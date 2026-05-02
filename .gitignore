@@ -1,0 +1,6 @@
+node_modules/
+*.vsix
+out/
+.DS_Store
+codex.md
+features.md

@@ -1,0 +1,46 @@
+{
+  "name": "sapui5-code-assist",
+  "displayName": "SAPUI5 Code Assist",
+  "description": "Autocomplete inicial para SAPUI5 em XML views/fragments e JavaScript.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "activationEvents": [
+    "onLanguage:xml",
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "SAPUI5 Code Assist",
+      "properties": {
+        "sapui5Autocomplete.version": {
+          "type": "string",
+          "default": "1.136.16",
+          "description": "Versao da base SAPUI5 a ser usada para autocomplete."
+        },
+        "sapui5Autocomplete.dataPath": {
+          "type": "string",
+          "default": "data",
+          "description": "Diretorio base dos JSONs SAPUI5. Caminhos relativos sao resolvidos a partir da raiz da extensao."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "check": "node --check src/extension.js && node --check src/dataLoader.js && node --check src/xmlCompletionProvider.js && node --check src/jsSymbolCompletionProvider.js && node scripts/validate-data.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.92.0",
+    "@vscode/vsce": "^3.9.1"
+  }
+}
