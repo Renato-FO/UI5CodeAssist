@@ -10,13 +10,15 @@ Extensao inicial para Cursor/VS Code com autocomplete SAPUI5 baseado nos JSONs l
 - JS symbol completion para classes, namespaces, enums, interfaces, typedefs e tipos.
 - JS method completion para cadeias simples, por exemplo `this.`, `this.getOwnerComponent().`, `this.getView().` e `this.byId("...").`.
 - Hover em simbolos e metodos JS com assinatura, tipo de retorno e descricao.
+- Deteccao automatica de projetos/arquivos SAPUI5 para evitar sugestoes em JavaScript/XML nao relacionados.
 
 ## Configuracao
 
 ```json
 {
   "sapui5Autocomplete.version": "1.136.16",
-  "sapui5Autocomplete.dataPath": "data"
+  "sapui5Autocomplete.dataPath": "data",
+  "sapui5Autocomplete.projectDetection": "auto"
 }
 ```
 
@@ -27,6 +29,14 @@ ${dataPath}/${version}/
 ```
 
 Quando `dataPath` for relativo, ele e resolvido a partir da raiz da extensao.
+
+`sapui5Autocomplete.projectDetection` aceita:
+
+- `auto`: ativa providers apenas em projetos/arquivos que parecem SAPUI5.
+- `always`: ativa providers em todos os arquivos suportados.
+- `disabled`: desativa os providers SAPUI5.
+
+A deteccao automatica considera sinais como `manifest.json` com `sap.app`/`sap.ui5`, `ui5.yaml`, `@ui5/cli` no `package.json`, `webapp/Component.js`, XML views/fragments com namespaces `sap.*` e arquivos JS com `sap.ui.define`.
 
 ## Rodar em modo debug
 
@@ -41,4 +51,4 @@ Quando `dataPath` for relativo, ele e resolvido a partir da raiz da extensao.
 npm run check
 ```
 
-Esse comando valida sintaxe dos arquivos da extensao e confirma que os JSONs esperados existem e parseiam.
+Esse comando valida sintaxe dos arquivos da extensao. Se `data/1.136.16` existir localmente, tambem confirma que os JSONs esperados parseiam.

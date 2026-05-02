@@ -5,9 +5,13 @@ const fs = require("fs");
 const path = require("path");
 const { loadUi5Json } = require("./dataLoader");
 
-function createJsSymbolCompletionProvider(context) {
+function createJsSymbolCompletionProvider(context, projectDetector) {
   return {
     provideCompletionItems(document, position) {
+      if (projectDetector && !projectDetector.isSapUi5Document(document)) {
+        return undefined;
+      }
+
       const memberRequest = getMemberCompletionRequest(document, position);
       if (memberRequest) {
         const memberItems = completeMembers(context, document, position, memberRequest);
@@ -31,9 +35,13 @@ function createJsSymbolCompletionProvider(context) {
   };
 }
 
-function createJsHoverProvider(context) {
+function createJsHoverProvider(context, projectDetector) {
   return {
     provideHover(document, position) {
+      if (projectDetector && !projectDetector.isSapUi5Document(document)) {
+        return undefined;
+      }
+
       const methodHover = getMethodHover(context, document, position);
       if (methodHover) {
         return methodHover;

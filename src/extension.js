@@ -7,8 +7,10 @@ const {
   createJsHoverProvider,
   createJsSymbolCompletionProvider
 } = require("./jsSymbolCompletionProvider");
+const { createSapUi5ProjectDetector } = require("./projectDetector");
 
 function activate(context) {
+  const projectDetector = createSapUi5ProjectDetector();
   const xmlSelector = [
     { language: "xml", scheme: "file" },
     { language: "xml", scheme: "untitled" }
@@ -27,21 +29,22 @@ function activate(context) {
   context.subscriptions.push(
     vscode.languages.registerCompletionItemProvider(
       xmlSelector,
-      createXmlCompletionProvider(context),
+      createXmlCompletionProvider(context, projectDetector),
       "<",
       ":",
       " "
     ),
     vscode.languages.registerCompletionItemProvider(
       jsSelector,
-      createJsSymbolCompletionProvider(context),
+      createJsSymbolCompletionProvider(context, projectDetector),
       "."
     ),
-    vscode.languages.registerHoverProvider(xmlSelector, createXmlHoverProvider(context)),
-    vscode.languages.registerHoverProvider(jsSelector, createJsHoverProvider(context)),
+    vscode.languages.registerHoverProvider(xmlSelector, createXmlHoverProvider(context, projectDetector)),
+    vscode.languages.registerHoverProvider(jsSelector, createJsHoverProvider(context, projectDetector)),
     vscode.workspace.onDidChangeConfiguration((event) => {
       if (event.affectsConfiguration("sapui5Autocomplete")) {
         clearUi5DataCache();
+        projectDetector.clearCache();
       }
     })
   );

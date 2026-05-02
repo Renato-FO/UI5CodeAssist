@@ -15,6 +15,11 @@ const requiredFiles = [
   "ui5-libs.json"
 ];
 
+if (!fs.existsSync(dataDir)) {
+  console.warn(`SAPUI5 data directory not found, skipping data validation: ${dataDir}`);
+  process.exit(0);
+}
+
 for (const fileName of requiredFiles) {
   const filePath = path.join(dataDir, fileName);
   const content = fs.readFileSync(filePath, "utf8");

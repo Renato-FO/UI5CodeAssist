@@ -1,7 +1,7 @@
 node_modules/
+data/
 *.vsix
 out/
 .DS_Store
 codex.md
 features.md
-data/

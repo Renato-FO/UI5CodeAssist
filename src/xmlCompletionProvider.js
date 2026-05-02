@@ -3,9 +3,13 @@
 const vscode = require("vscode");
 const { loadUi5Json } = require("./dataLoader");
 
-function createXmlCompletionProvider(context) {
+function createXmlCompletionProvider(context, projectDetector) {
   return {
     provideCompletionItems(document, position) {
+      if (projectDetector && !projectDetector.isSapUi5Document(document)) {
+        return undefined;
+      }
+
       const textUntilPosition = document.getText(
         new vscode.Range(new vscode.Position(0, 0), position)
       );
@@ -26,9 +30,13 @@ function createXmlCompletionProvider(context) {
   };
 }
 
-function createXmlHoverProvider(context) {
+function createXmlHoverProvider(context, projectDetector) {
   return {
     provideHover(document, position) {
+      if (projectDetector && !projectDetector.isSapUi5Document(document)) {
+        return undefined;
+      }
+
       const tagContext = getXmlTagContextAtPosition(document, position);
       if (!tagContext) {
         return undefined;

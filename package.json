@@ -32,12 +32,22 @@
           "type": "string",
           "default": "data",
           "description": "Diretorio base dos JSONs SAPUI5. Caminhos relativos sao resolvidos a partir da raiz da extensao."
+        },
+        "sapui5Autocomplete.projectDetection": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "always",
+            "disabled"
+          ],
+          "default": "auto",
+          "description": "Controla quando os providers SAPUI5 ficam ativos. 'auto' detecta projetos/arquivos SAPUI5, 'always' ativa em todos os arquivos suportados e 'disabled' desativa os providers."
         }
       }
     }
   },
   "scripts": {
-    "check": "node --check src/extension.js && node --check src/dataLoader.js && node --check src/xmlCompletionProvider.js && node --check src/jsSymbolCompletionProvider.js && node scripts/validate-data.js"
+    "check": "node --check src/extension.js && node --check src/dataLoader.js && node --check src/projectDetector.js && node --check src/xmlCompletionProvider.js && node --check src/jsSymbolCompletionProvider.js && node scripts/validate-data.js"
   },
   "devDependencies": {
     "@types/vscode": "^1.92.0",
