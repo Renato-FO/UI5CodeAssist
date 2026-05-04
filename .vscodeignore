@@ -2,3 +2,5 @@
 node_modules/**
 *.vsix
 codex.md
+features.md
+instructions.md

@@ -48,7 +48,7 @@ function warnOnce(filePath, error) {
 
   warnedPaths.add(filePath);
   vscode.window.showWarningMessage(
-    `SAPUI5 Code Assist: nao foi possivel carregar ${filePath}: ${error.message}`
+    `SAPUI5 Code Assist: could not load ${filePath}: ${error.message}`
   );
 }
 

@@ -1,10 +1,31 @@
 {
   "name": "sapui5-code-assist",
   "displayName": "SAPUI5 Code Assist",
-  "description": "Autocomplete inicial para SAPUI5 em XML views/fragments e JavaScript.",
-  "version": "0.0.1",
+  "description": "SAPUI5 autocomplete, hover documentation, and code assistance for XML views, fragments, and JavaScript.",
+  "version": "0.0.4",
   "publisher": "renatoordonho",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Renato-FO/UI5CodeAssist.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Renato-FO/UI5CodeAssist/issues"
+  },
+  "homepage": "https://github.com/Renato-FO/UI5CodeAssist#readme",
   "icon": "assets/icon.png",
+  "galleryBanner": {
+    "color": "#0b1220",
+    "theme": "dark"
+  },
+  "keywords": [
+    "SAPUI5",
+    "OpenUI5",
+    "UI5",
+    "autocomplete",
+    "XML",
+    "JavaScript"
+  ],
   "engines": {
     "vscode": "^1.92.0"
   },
@@ -27,12 +48,12 @@
         "sapui5Autocomplete.version": {
           "type": "string",
           "default": "1.136.16",
-          "description": "Versao da base SAPUI5 a ser usada para autocomplete."
+          "description": "SAPUI5 data version used for completion and hover information."
         },
         "sapui5Autocomplete.dataPath": {
           "type": "string",
           "default": "data",
-          "description": "Diretorio base dos JSONs SAPUI5. Caminhos relativos sao resolvidos a partir da raiz da extensao."
+          "description": "Base directory for SAPUI5 JSON data. Relative paths are resolved from the extension root."
         },
         "sapui5Autocomplete.projectDetection": {
           "type": "string",
@@ -42,7 +63,7 @@
             "disabled"
           ],
           "default": "auto",
-          "description": "Controla quando os providers SAPUI5 ficam ativos. 'auto' detecta projetos/arquivos SAPUI5, 'always' ativa em todos os arquivos suportados e 'disabled' desativa os providers."
+          "description": "Controls when SAPUI5 providers are active. 'auto' detects SAPUI5 projects/files, 'always' enables all supported files, and 'disabled' turns the providers off."
         }
       }
     }
